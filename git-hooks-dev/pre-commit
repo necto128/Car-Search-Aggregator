@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Run Black on all Python files
+echo "Running Black..."
+black --check .
+black_retval=$?
+
+# Check if Black returned an error
+if [ $black_retval -ne 0 ]; then
+  echo "Black found errors. Aborting commit."
+  exit 1 # Abort commit
+fi
+
+# If no errors, continue with the commit
+exit 0
